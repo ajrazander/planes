@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+
+  <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+  </script>
+  <script>
+   $(document).ready(function() {
+     var myurl = "https://opensky-network.org/api/states/all";
+     window.setInterval(function() {
+     $.ajax({
+       url : myurl,
+       dataType : "json",
+         success : function(parsed_json) {
+          console.log("here");
+          var planes = parsed_json.states;
+          everything = "<h3> " + planes.length.toString() + "</h3>";
+          $("#plane-count").html(everything);
+        }
+     });
+},1000);
+   });
+  </script>
+ </head>
+ <body>
+   <div class="container" style="background-color: lightgreen;">
+   <h1 class="jumbotron" style="text-align: center;">AIRPLANES!</h1>
+   <h2 align="center">There are</h2>
+   <h3 align="center" id="plane-count">wait for it...</h3>
+   <h2 align="center" >planes in the sky--right now!</h2>
+   <img align="middle" src="https://image.flaticon.com/icons/svg/0/614.svg">
+   </div> 
+</body>
+
+</html>
